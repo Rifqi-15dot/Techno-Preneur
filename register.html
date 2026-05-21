@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/style.css">
+</head>
+
+<body>
+    <style>
+     footer{
+            margin-top: 60px;
+        }
+        img{
+            margin-right: 120px;
+        }
+        </style>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg sticky-top bg-success">
+        <div class="container">
+
+            <a class="navbar-brand text-white" href="#beranda">
+                Web-UKK-Rifki
+            </a>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <div class="navbar-nav ms-auto">
+                    <a class="nav-link text-white" href="index.html#beranda">Beranda</a>
+                    <a class="nav-link text-white" href="index.html#tentangkami">Tentang Kami</a>
+                    <a class="nav-link text-white" href="index.html#Sertifikasi">Daftar Sertifikasi</a>
+                    <a class="nav-link text-white" href="index.html#contact">Contact</a>
+                </div>
+            </div>
+
+        </div>
+    </nav>
+
+    <!-- Login Section -->
+    <section class="login-section d-flex align-items-center">
+
+        <div class="container">
+
+            <div class="row justify-content-center align-items-center">
+
+                <div class="col-md-5 my-5">
+
+                    <div class="login-card p-4 shadow">
+
+                        <h3 class="text-center text-dark">
+                            Register
+                        </h3>
+
+                        <form id="formLogin" onsubmit="register(event)">
+
+                            <!-- Nama Lengkap-->
+                            <div class="mb-3">
+                                <label>Nama Lengkap</label>
+                                <input type="text" id="username" class="form-control">
+                            </div>
+
+                            <!-- Password -->
+                            <div class="mb-3">
+                                <label>Password</label>
+                                <input type="password" id="password" class="form-control">
+                            </div>
+
+                            <!-- Email -->
+                            <div class="mb-3">
+                                <label>Email</label>
+                                <input type="email" id="email" class="form-control">
+                            </div>
+
+                            <!-- Tombol -->
+                            <div class="d-flex justify-content-between my-4">
+                                <button type="submit" class="btn btn-primary">
+                                    Daftar
+                                </button>
+
+                                <button type="reset" class="btn btn-secondary">
+                                    Batal
+                                </button>
+                            </div>
+
+                            <!-- Registrasi -->
+                            <p>
+                                sudah punya akun?
+                                <a href="login.html">masuk</a>
+                            </p>
+
+                        </form>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+        <img src="assets/logo tecno.png" width="400" height="400px">
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-success text-white py-4">
+        <div class="container text-center">
+            <p class="mb-1">&copy; 2026 ALL RIGHTS RESERVED</p>
+        </div>
+    </footer>
+
+
+    <!-- JavaScript Login-->
+    <script>
+    function register(event){
+
+event.preventDefault()
+
+let username = document.getElementById("username").value.trim()
+let email = document.getElementById("email").value.trim()
+let password = document.getElementById("password").value.trim()
+
+if(username=="" || email=="" || password==""){
+alert("Semua data harus diisi")
+return
+}
+
+let akun = JSON.parse(localStorage.getItem("akun")) || []
+
+let cek = akun.find(user => user.email === email)
+
+if(cek){
+alert("Email sudah terdaftar")
+return
+}
+
+akun.push({
+username:username,
+email:email,
+password:password
+})
+
+localStorage.setItem("akun", JSON.stringify(akun))
+
+alert("Registrasi berhasil")
+
+window.location.href="login.html"
+
+}
+</script>
+
+
+</body>
+</html>
